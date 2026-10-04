@@ -1,15 +1,22 @@
 # Bomberman
 
-Juego de Bomberman hecho en Wollok. Recorre el laberinto, rompe cajas con bombas,
-derrota a los dos enemigos y llega a la salida. Algunas cajas esconden mejoras.
+Juego de Bomberman hecho en Wollok. Recorre el laberinto, rompe ladrillos con bombas,
+derrota a los 2 enemigos para desbloquear la salida. 
+Enemigo rojo: sigue a player.
+Enemigo violeta: movimiento aleatorio.
+Hay ladrillos que esconden poderes:
+- Sol: aumenta el alcance de la bomba.
+- Rayo: aumenta la velocidad de player.
 
 ## Ejecutar
 
-Desde esta carpeta, ejecuta:
+Desde la carpeta "mi-juego-en-wollok", ejecuta:
 
 ```sh
 npm start
 ```
+Vista:
+<img width="626" height="435" alt="image" src="https://github.com/user-attachments/assets/c27b77a8-bffe-421f-93c9-9c72528a4d84" />
 
 También puedes abrir `mainExample.wpgm` desde Wollok y ejecutar el programa
 `mainExample.BombermanGame`.
@@ -30,5 +37,5 @@ Cada clase del juego tiene su propio archivo: `bombermanPlayer.wlk`,
 
 Las paredes grises son indestructibles. Las cajas marrones se destruyen con
 explosiones; algunas liberan una mejora de alcance o de velocidad. El enemigo
-violeta se mueve al azar y el rojo persigue al jugador. La salida se abre al
+violeta se mueve aleatoriamente y el rojo persigue al jugador. La salida se abre al
 derrotar a ambos.
