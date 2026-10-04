@@ -1,0 +1,13 @@
+import wollok.game.*
+
+import example.bombermanGame
+
+program BombermanGame {
+  game.title("Bomberman")
+  game.height(9)
+  game.width(13)
+  game.cellSize(48)
+
+  bombermanGame.startLevel()
+  game.start()
+}

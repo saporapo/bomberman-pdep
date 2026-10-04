@@ -1,0 +1,63 @@
+import wollok.game.*
+
+import example.bombermanGame
+
+describe "Bomberman" {
+  test "starts with a player, crates and two enemies" {
+    bombermanGame.startLevel()
+
+    assert.equals("playing", bombermanGame.currentStatus())
+    assert.equals(game.at(1, 1), bombermanGame.playerPosition())
+    assert.equals(2, bombermanGame.remainingEnemies())
+    assert.that(bombermanGame.numberOfCrates() > 0)
+  }
+
+  test "the level contains indestructible and breakable walls" {
+    bombermanGame.startLevel()
+
+    assert.that(bombermanGame.solidWallAt(game.at(4, 2)))
+    assert.that(bombermanGame.crateAt(game.at(3, 1)))
+    assert.notThat(bombermanGame.crateAt(game.at(4, 1)))
+  }
+
+  test "the player cannot walk through the outer wall" {
+    bombermanGame.startLevel()
+    bombermanGame.movePlayer(-1, 0)
+
+    assert.equals(game.at(1, 1), bombermanGame.playerPosition())
+  }
+
+  test "the player starts with the default bomb range and speed" {
+    bombermanGame.startLevel()
+
+    assert.equals(2, bombermanGame.bombRadius())
+    assert.equals(1, bombermanGame.movesPerKey())
+  }
+
+  test "the player can restart after losing" {
+    bombermanGame.startLevel()
+    bombermanGame.lose()
+    bombermanGame.restart()
+
+    assert.equals("playing", bombermanGame.currentStatus())
+    assert.equals(2, bombermanGame.remainingEnemies())
+    assert.equals(game.at(1, 1), bombermanGame.playerPosition())
+  }
+
+  test "a bomb destroys a breakable wall and reveals its upgrade" {
+    bombermanGame.startLevel()
+    bombermanGame.placeBomb()
+    game.flushEvents(1800)
+
+    assert.notThat(bombermanGame.crateAt(game.at(3, 1)))
+    assert.equals(1, bombermanGame.numberOfPowerUps())
+    assert.equals("lost", bombermanGame.currentStatus())
+  }
+
+  test "the hunting enemy moves closer to the player" {
+    bombermanGame.startLevel()
+    bombermanGame.moveHuntingEnemies()
+
+    assert.equals(game.at(10, 5), bombermanGame.huntingEnemyPosition())
+  }
+}

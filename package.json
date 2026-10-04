@@ -1,0 +1,8 @@
+{
+  "name": "mi-juego-en-wollok",
+  "version": "1.0.0",
+  "dependencies": {},
+  "scripts": {
+    "start": "wollok run --assets assets mainExample.BombermanGame"
+  }
+}
