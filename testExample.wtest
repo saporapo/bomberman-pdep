@@ -60,4 +60,14 @@ describe "Bomberman" {
 
     assert.equals(game.at(10, 5), bombermanGame.huntingEnemyPosition())
   }
+
+  test "the roaming enemy moves when one exit from its starting spot is cleared" {
+    bombermanGame.startLevel()
+    bombermanGame.destroyCrateAt(game.at(8, 1))
+    assert.notThat(bombermanGame.crateAt(game.at(8, 1)))
+    assert.that(bombermanGame.canEnemyEnter(game.at(8, 1)))
+    bombermanGame.moveRoamingEnemies()
+
+    assert.equals(game.at(8, 1), bombermanGame.roamingEnemyPosition())
+  }
 }

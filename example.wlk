@@ -301,6 +301,8 @@ object bombermanGame {
   method movesPerKey() = player.movesPerKey()
   method huntingEnemyPosition() =
     enemies.find({ enemy => !enemy.isRoaming() }).position()
+  method roamingEnemyPosition() =
+    enemies.find({ enemy => enemy.isRoaming() }).position()
   method crateAt(position) = self.hasCrate(position)
   method solidWallAt(position) = self.hasSolidWall(position)
 }
